@@ -1,0 +1,45 @@
+{
+    "workouts": [
+        {
+            "title": "Workout 1"
+        },
+        {
+            "title": "Workout 2"
+        },
+        {
+            "title": "Workout 3"
+        },
+        {
+            "title": "Workout 4"
+        },
+        {
+            "title": "Workout 5"
+        },
+        {
+            "title": "Workout 6"
+        }
+    ],
+    "quickItems": [
+        {
+            "title": "Quick Access Item 1"
+        },
+        {
+            "title": "Quick Access Item 2"
+        },
+        {
+            "title": "Quick Access Item 3"
+        },
+        {
+            "title": "Quick Access Item 4"
+        },
+        {
+            "title": "Quick Access Item 5"
+        },
+        {
+            "title": "Quick Access Item 6"
+        },
+        {
+            "title": "Quick Access Item 7"
+        }
+    ]
+}

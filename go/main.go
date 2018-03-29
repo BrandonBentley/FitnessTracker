@@ -27,7 +27,10 @@ func main() {
 	fmt.Println("Current Directory: " + path)
 	wg.Add(1)
 	go prompt(wg)
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), router))
+	//HTTP Server
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port),  router))
+	//HTTPS Server
+	//log.Fatal(http.ListenAndServeTLS(":"+strconv.Itoa(port),  "cert/server.crt", "cert/server.key",  router))
 	wg.Wait()
 }
 
@@ -35,12 +38,14 @@ func init() {
 	router = mux.NewRouter()
 	router.HandleFunc("/", getHome).Methods("GET")
 	router.HandleFunc("/js/{script}", getJS).Methods("GET")
+	router.HandleFunc("/js/plugins/{plugin}", getJSPlugin).Methods("GET")
 	router.HandleFunc("/css/{stylesheet}", getCSS).Methods("GET")
-	router.HandleFunc("/images/{image}", GetImage).Methods("GET")
-	router.HandleFunc("/json", JSONRequestHandler)
-	router.HandleFunc("/post", JSONPostHandler)
+	router.HandleFunc("/images/{image}", getImage).Methods("GET")
+	router.HandleFunc("/json", JSONRequestHandler).Methods("GET")
 	router.HandleFunc("/login", getLogin).Methods("GET")
-	router.HandleFunc("/login", postLogin).Methods("POST")
+	router.HandleFunc("/logout", getLogout).Methods("GET")
 	router.HandleFunc("/signup", getSignUp).Methods("GET")
+	router.HandleFunc("/json", JSONPostHandler).Methods("POST")
+	router.HandleFunc("/login", postLogin).Methods("POST")
 	router.HandleFunc("/signup", postSignUp).Methods("POST")
 }

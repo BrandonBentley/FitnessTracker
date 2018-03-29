@@ -7,5 +7,5 @@ import (
 
 var port int
 var router *mux.Router
-var cookieJar = map[string]LoginInfo{}
+var cookieJar = map[string]WrappedCookie{}
 var db *sql.DB

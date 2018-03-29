@@ -1,5 +1,5 @@
-var circleSpinner = `
-<div class="lds-css ng-scope">
+var circleSpinner =
+    `<div class="lds-css ng-scope">
 <div class="lds-spinner" style="width:100%;height:100%;margin:auto;"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 <style type="text/css">@keyframes lds-spinner {
   0% {
@@ -111,5 +111,4 @@ var circleSpinner = `
   -webkit-transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
   transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
 }
-</style></div>
-`
+</style></div>`;

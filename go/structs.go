@@ -1,6 +1,10 @@
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"net/http"
+	"time"
+)
 
 type LoginInfo struct {
 	Username string
@@ -20,4 +24,25 @@ type SignUpInfo struct {
 
 func (s SignUpInfo) String() string {
 	return "Username: " + s.Username + "\tpassword: " + s.Password + "\tremember: " + s.Email
+}
+
+type WrappedCookie struct {
+	Cookie http.Cookie
+	UserId string
+	Created time.Time
+}
+
+type RequestType struct {
+	Request string
+}
+
+type Item struct {
+	Title string
+	Value string
+	List []SubItem
+}
+
+type SubItem struct {
+	Title string
+	Value string
 }

@@ -1,45 +1,45 @@
 {
-    "workouts": [
+    "List": [
         {
-            "title": "Workout 1"
+            "Title": "Workout 1"
         },
         {
-            "title": "Workout 2"
+            "Title": "Workout 2"
         },
         {
-            "title": "Workout 3"
+            "Title": "Workout 3"
         },
         {
-            "title": "Workout 4"
+            "Title": "Workout 4"
         },
         {
-            "title": "Workout 5"
+            "Title": "Workout 5"
         },
         {
-            "title": "Workout 6"
+            "Title": "Workout 6"
         }
     ],
     "quickItems": [
         {
-            "title": "Quick Access Item 1"
+            "Title": "Quick Item 1"
         },
         {
-            "title": "Quick Access Item 2"
+            "Title": "Quick Item 2"
         },
         {
-            "title": "Quick Access Item 3"
+            "Title": "Quick Item 3"
         },
         {
-            "title": "Quick Access Item 4"
+            "Title": "Quick Item 4"
         },
         {
-            "title": "Quick Access Item 5"
+            "Title": "Quick Item 5"
         },
         {
-            "title": "Quick Access Item 6"
+            "Title": "Quick Item 6"
         },
         {
-            "title": "Quick Access Item 7"
+            "Title": "Quick Item 7"
         }
     ]
 }

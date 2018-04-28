@@ -10,7 +10,7 @@ IF EXIST Server.exe (
 	echo Removing Previous Server
 )
 IF NOT EXIST Server.exe (
-	go build -i -o Server.exe go/main.go go/handlers.go go/prompt.go go/structs.go go/helpers.go go/global.go >> buildInfo
+	go build -i -o Server.exe go/main.go go/handlers.go go/prompt.go go/structs.go go/helpers.go go/global.go go/router.go go/dbCalls.go >> buildInfo
 ) ELSE (
 	echo Previous Server Removal Failed
 )

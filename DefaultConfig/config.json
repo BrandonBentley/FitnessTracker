@@ -3,7 +3,7 @@
     "HttpsEnabled": false,
     "CertFile": "cert/server.crt",
     "KeyFile": "cert/server.key",
-    "RootDir": "C:/dev/FitnessTrackerVue/",
+    "RootDir": "/site/",
     "SqlDriver": "mysql",
     "DatabaseAddress": "root:password@tcp(localhost:3306)/fitnessdb"
 }

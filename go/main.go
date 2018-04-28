@@ -11,41 +11,53 @@ import (
 	"github.com/gorilla/mux"
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
+	"io/ioutil"
+	"encoding/json"
 )
 
+
+
 func main() {
+	config = GetConfig()
+	fmt.Println(config.String())
 	var err error
-	db, err = sql.Open("mysql", "root:password@tcp(localhost:3306)/fitnessdb")
+	var router *mux.Router
+	router = GetRouter()
+	db, err = sql.Open(config.SqlDriver, config.DatabaseAddress)
 	if check(err) {
 		return
 	}
 	defer db.Close()
-	port = 8080
 	var wg sync.WaitGroup
-	fmt.Println("Serving on port " + strconv.Itoa(port))
+	fmt.Println("Serving on port " + strconv.Itoa(config.Port))
 	path, _ := filepath.Abs(filepath.Dir(os.Args[0]))
 	fmt.Println("Current Directory: " + path)
 	wg.Add(1)
 	go prompt(wg)
-	//HTTP Server
-	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port),  router))
-	//HTTPS Server
-	//log.Fatal(http.ListenAndServeTLS(":"+strconv.Itoa(port),  "cert/server.crt", "cert/server.key",  router))
+	if config.HttpsEnabled {
+		//HTTPS Server
+		log.Fatal(http.ListenAndServeTLS(":"+strconv.Itoa(config.Port),  config.CertFile, config.KeyFile,  router))
+	} else {
+		//HTTP Server
+		log.Fatal(http.ListenAndServe(":"+strconv.Itoa(config.Port),  router))
+	}
+
+
 	wg.Wait()
 }
 
-func init() {
-	router = mux.NewRouter()
-	router.HandleFunc("/", getHome).Methods("GET")
-	router.HandleFunc("/js/{script}", getJS).Methods("GET")
-	router.HandleFunc("/js/plugins/{plugin}", getJSPlugin).Methods("GET")
-	router.HandleFunc("/css/{stylesheet}", getCSS).Methods("GET")
-	router.HandleFunc("/images/{image}", getImage).Methods("GET")
-	router.HandleFunc("/json", JSONRequestHandler).Methods("GET")
-	router.HandleFunc("/login", getLogin).Methods("GET")
-	router.HandleFunc("/logout", getLogout).Methods("GET")
-	router.HandleFunc("/signup", getSignUp).Methods("GET")
-	router.HandleFunc("/json", JSONPostHandler).Methods("POST")
-	router.HandleFunc("/login", postLogin).Methods("POST")
-	router.HandleFunc("/signup", postSignUp).Methods("POST")
+func GetConfig() Configuration {
+	raw, err := ioutil.ReadFile("./config.json")
+	if err != nil {
+		fmt.Println("config.json not found setting defaults.")
+		config := Configuration{8080, false, "cert/server.crt", "cert/server.key", "/site/", "mysql", "root:password@tcp(localhost:3306)/fitnessdb"}
+		fmt.Println(config.String())
+		return config
+	}
+	var config Configuration
+	json.Unmarshal(raw, &config)
+	if (config.RootDir[len(config.RootDir)-1] != '/') {
+		config.RootDir += "/";
+	}
+	return config
 }

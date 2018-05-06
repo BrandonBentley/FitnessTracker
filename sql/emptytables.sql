@@ -36,25 +36,3 @@ CREATE TABLE exercise_sets (
     set_weight FLOAT DEFAULT 0,
     note VARCHAR(255) DEFAULT ''
 );
--- Use Above This Line Only --
--- Nothing Below This Line Is Functional --
-CREATE TABLE workout_templates (
-    workout_id CHAR(37) NOT NULL UNIQUE PRIMARY KEY,
-    user_id VARCHAR(37) NOT NULL,
-    workout_name VARCHAR(50),
-    begin_date DATE,
-    end_date DATE
-);
-
-CREATE TABLE exercise_templates (
-    ex_id VARCHAR(37) NOT NULL UNIQUE PRIMARY KEY,
-    workout_id CHAR(37) NOT NULL,
-    ex_cat_id VARCHAR(25),
-    ex_name VARCHAR(50) DEFAULT ''
-);
-
-CREATE TABLE exercise_catelog (
-    ex_cat_id VARCHAR(37) NOT NULL UNIQUE PRIMARY KEY, 
-    ex_cat_name VARCHAR(50)
-);
-
